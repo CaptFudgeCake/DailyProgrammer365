@@ -31,10 +31,8 @@ public class Expression {
             Expression temp = makeDeepExpres();
             val = temp.evalExpres();
         }else if(n == 2){
-            val = a;
-            for (int ct = 0; ct < b; ct++){
-                val = (int)Math.pow(val,a);
-            }
+            Expression temp = makeDeepExpres();
+            val = temp.evalExpres();
         }else if (n == 1){
             val = (int)Math.pow(a,b);
         }
@@ -43,9 +41,18 @@ public class Expression {
 
     private Expression makeDeepExpres(){
         Expression deep = new Expression(a, a, n-1);
-        for (int ct = 0; ct < b; ct++){
+        for (int ct = 0; ct < b-2; ct++){
             deep = new Expression(a, deep, n-1);
         }
         return deep;
+    }
+
+    public static void main(String[] args){
+        Expression e = new Expression(2,4,1);
+        System.out.println(e.evalExpres());
+        e = new Expression(2,4,2);
+        System.out.println(e.evalExpres());
+        e = new Expression(2,3,3);
+        System.out.println(e.evalExpres());
     }
 }
